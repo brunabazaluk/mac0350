@@ -52,9 +52,9 @@ def query2(request):
 def query3(request):
     with connection.cursor() as cursor:
         cursor.execute('\
-                SELECT servico.classe\
-                COUNT(servico.classe)\
-                    from log_timestamp\
+                SELECT servico.classe,\
+                    COUNT(servico.classe)\
+                    FROM log_timestamp\
                 INNER JOIN servico ON (servico.id_servico=log_timestamp.id_servico)\
                 GROUP BY servico.classe\
                 ORDER BY COUNT(servico.classe) DESC\
@@ -71,8 +71,8 @@ def query4(request):
     with connection.cursor() as cursor:
         cursor.execute('\
                 SELECT DISTINCT tutelamento.id_tutor, tutelamento.id_tutelado FROM tutelamento;\
-                SELECT pessoa.nome\
-                   COUNT(DISTINCT tutelamento.id_tutor) AS "quantos tutores tem"\
+                SELECT\
+                   COUNT(DISTINCT tutelamento.id_tutor)\
                     from pessoa\
                 INNER JOIN usuario ON (usuario.id_pessoa=pessoa.id_pessoa)\
                 INNER JOIN tutelamento ON (tutelamento.id_tutor=usuario.id_usuario)\

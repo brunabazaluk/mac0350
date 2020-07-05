@@ -1,15 +1,13 @@
 <!DOCTYPE html>
 <html>
 <body>
-  <h1>Resultado da Query 1</h1>
-  <p>Lista de Usuarios</p>
-  {% if query1_result_list %}
-    <p>TOTAL: {{query1_result_list | length}}</p>
-    {% for row in query1_result_list %}
+  <h1>Resultado da Query 3</h1>
+  <p>3 classes mais usadas:</p>
+  {% if query3_result_list %}
+    {% for row in query3_result_list %}
     <ul>
-      <li><p>Servico: {{row.nome}}</p> </li>
-      <li><p>Classe: {{row.classe}}</p> </li>
-      <li><p>Tutelamento: {{tutelamento.id_servico}}</p> </li>
+      <li><p>Serviço: {{row.classe}}</p> </li>
+      <li><p>Serviço: {{row.id_servico}}</p> </li>
     </ul>
     <br>
     {% endfor %}
