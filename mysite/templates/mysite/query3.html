@@ -1,10 +1,11 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html lang="en">
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="personal.css">
+<link rel="stylesheet" href="{% static 'css/personal.css' %}">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
@@ -69,8 +70,8 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   </div>
 
 	
-  <a href="query2" class="myButton">Query anterior</a>
-  <a href="query4" class="myButton">Próxima query</a>
+  <a href="query2" class="aButton">Query anterior</a>
+  <a href="query4" class="pButton">Próxima query</a>
 
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">

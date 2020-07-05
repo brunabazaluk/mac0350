@@ -1,11 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 
 <html lang="en">
 <title>W3.CSS Template</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="personal.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="{% static 'css/personal.css' %}">
 <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,7 +53,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
     <div class="w3-twothird w3-container">
 		<!-- <h1 class="w3-text-teal">Heading</h1> -->
 	  <h2 class="w3-text-teal">Query 1</h2>
-	  <p>Serviços que podem ser feitos por tutorados ordenados alfabeticamente:</p>
+	  <p>Serviços que podem ser feitos por tutelados ordenados alfabeticamente:</p>
 	  {% if query1_result_list %}
       <p>TOTAL: {{query1_result_list | length}}</p>
       {% for row in query1_result_list %}
@@ -71,7 +72,7 @@ html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif;}
   </div>
 
 	
-  <a href="query2" class="myButton">Próxima query</a>
+  <a href="query2" class="pButton">Próxima query</a>
 
   <footer id="myFooter">
     <div class="w3-container w3-theme-l2 w3-padding-32">

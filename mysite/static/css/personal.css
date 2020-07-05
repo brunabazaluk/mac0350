@@ -1,0 +1,46 @@
+.pButton {
+	background-color:#03a3a3;
+	border:1px solid #29668f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+	position:relative;
+	left:200px;
+	bottom:30px;
+}
+.pButton:hover {
+	background-color:#408c99;
+}
+.pButton:active {
+	position:relative;
+}
+
+.aButton {
+	background-color:#03a3a3;
+	border:1px solid #29668f;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:17px;
+	padding:16px 31px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #3d768a;
+	position:relative;
+	bottom:30px;
+	left:200px;
+}
+.aButton:hover {
+	background-color:#408c99;
+}
+
+.aButton:active {
+	position:relative;
+}
+
+       
