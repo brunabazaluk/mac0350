@@ -5,6 +5,8 @@ If you want to run the server or connect to "pgadmin" database you must be using
 
 ### Some instructions (almost nothing)
 
+To see it in your browser you should open ``` localhost:8000/home ```
+
 ```$ python manage.py inspectdb``` generates models automatically, according to the database you set at ```mysite/settings.py```
 
 The folder ```examples/``` contains examples (oh rly?!) of some of the important files at ```mysite/```, like ```urls.py```, ```models.py```, etc.
