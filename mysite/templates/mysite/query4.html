@@ -2,13 +2,13 @@
 <html>
 <body>
   <h1>Resultado da Query 4</h1>
-  <p>Quantos tutorandos cada tutor tem</p>
+  <p>Quantos tutelados cada tutor tem</p>
   {% if query4_result_list %}
     <p>TOTAL: {{query4_result_list | length}}</p>
     {% for row in query4_result_list %}
     <ul>
-      <li><p>Tutor: {{row.id_tutor}}</p> </li>
-      <li><p>Tutelados: {{row.id_tutelado}}</p> </li>
+      <li><p>Tutor: {{row.0}}</p> </li>
+      <li><p>Tutelados: {{row.1}}</p> </li>
     </ul>
     <br>
     {% endfor %}

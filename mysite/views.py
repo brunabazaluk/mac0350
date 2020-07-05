@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-#from .models import Usuario
-#from .models import Perfil
+from .models import Usuario
+from .models import Perfil
 from django.db import connection
 from collections import namedtuple
 from django.template import loader
@@ -51,15 +51,15 @@ def query2(request):
 
 def query3(request):
     with connection.cursor() as cursor:
-        cursor.execute('\
-                SELECT servico.classe,\
-                    COUNT(servico.classe)\
-                    FROM log_timestamp\
-                INNER JOIN servico ON (servico.id_servico=log_timestamp.id_servico)\
-                GROUP BY servico.classe\
-                ORDER BY COUNT(servico.classe) DESC\
-                LIMIT 3\
-                ')
+        cursor.execute('''
+                SELECT servico.classe,
+                    COUNT(servico.classe)
+                    FROM log_timestamp
+                INNER JOIN servico ON (servico.id_servico=log_timestamp.id_servico)
+                GROUP BY servico.classe
+                ORDER BY COUNT(servico.classe) DESC
+                LIMIT 3
+                ''')
         result = named_tuple_fetchall(cursor)
     print(result)
     template = loader.get_template('mysite/query3.html')
@@ -69,18 +69,18 @@ def query3(request):
 
 def query4(request):
     with connection.cursor() as cursor:
-        cursor.execute('\
-                SELECT DISTINCT tutelamento.id_tutor, tutelamento.id_tutelado FROM tutelamento;\
-                SELECT\
-                   COUNT(DISTINCT tutelamento.id_tutor)\
-                    from pessoa\
-                INNER JOIN usuario ON (usuario.id_pessoa=pessoa.id_pessoa)\
-                INNER JOIN tutelamento ON (tutelamento.id_tutor=usuario.id_usuario)\
-                GROUP BY pessoa.nome\
-                ORDER BY COUNT(DISTINCT tutelamento.id_tutor), pessoa.nome DESC\
-                ')
+        cursor.execute('''
+                SELECT pessoa.nome,
+                   COUNT(DISTINCT tutelamento.id_tutelado)
+                    from pessoa
+                INNER JOIN usuario ON (usuario.id_pessoa=pessoa.id_pessoa)
+                INNER JOIN tutelamento ON (tutelamento.id_tutor=usuario.id_usuario)
+                GROUP BY pessoa.nome
+                ORDER BY COUNT(DISTINCT tutelamento.id_tutor), pessoa.nome DESC
+                ''')
         result = named_tuple_fetchall(cursor)
-    print(result)
+
+    print("OH O RESULT: {}".format(result))
     template = loader.get_template('mysite/query4.html')
     context = {'query4_result_list': result,}
     

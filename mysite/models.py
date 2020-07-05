@@ -273,8 +273,8 @@ class Servico(models.Model):
 
 
 class Tutelamento(models.Model):
-    id_tutelado = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_tutelado')
-    id_tutor = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_tutor')
+    id_tutelado = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_tutelado', related_name='Usuario_id_tutelado')
+    id_tutor = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_tutor', related_name='Usuario_id_tutor')
     id_servico = models.ForeignKey(Servico, models.DO_NOTHING, db_column='id_servico')
     id_perfil = models.ForeignKey(Perfil, models.DO_NOTHING, db_column='id_perfil')
     data_inicio = models.DateField()
@@ -284,7 +284,6 @@ class Tutelamento(models.Model):
         managed = False
         db_table = 'tutelamento'
         unique_together = (('id_tutelado', 'id_tutor', 'id_servico', 'id_perfil'),)
-        abstract = True
 
 
 class Usuario(models.Model):
