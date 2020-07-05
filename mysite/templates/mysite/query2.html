@@ -2,15 +2,12 @@
 <html>
 <body>
   <h1>Resultado da Query 2</h1>
-  <p>Lista de Usuarios</p>
+  <p>Lista de servicos que podem ser feitos por nao tutorados ordenado alfabeticamente</p>
   {% if query2_result_list %}
     <p>TOTAL: {{query2_result_list | length}}</p>
     {% for row in query2_result_list %}
     <ul>
       <li><p>Servico: {{row.nome}}</p> </li>
-      <li><p>nome: {{row.nome}}</p> </li>
-      <li><p>login: {{row.login}}</p> </li>
-      <li><p>perfis: {{row.perfis}}</p> </li>
     </ul>
     <br>
     {% endfor %}

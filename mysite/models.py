@@ -19,7 +19,7 @@ class Amostra(models.Model):
         managed = False
         db_table = 'amostra'
 
-
+'''
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -128,7 +128,7 @@ class DjangoSession(models.Model):
     class Meta:
         managed = False
         db_table = 'django_session'
-
+'''
 
 class Exame(models.Model):
     id_exame = models.IntegerField(primary_key=True)
@@ -141,16 +141,16 @@ class Exame(models.Model):
         unique_together = (('tipo', 'virus', 'id_exame'),)
 
 
-class ExamplePerfil(models.Model):
+class Perfil(models.Model):
     codigo = models.CharField(max_length=255)
     tipo = models.CharField(max_length=255)
 
     class Meta:
         managed = False
-        db_table = 'example_perfil'
+        #db_table = 'example_perfil'
 
 
-class ExampleUsuario(models.Model):
+class Usuario(models.Model):
     cpf = models.CharField(max_length=11)
     nome = models.CharField(max_length=255)
     area_de_pesquisa = models.CharField(max_length=255, blank=True, null=True)
@@ -162,17 +162,18 @@ class ExampleUsuario(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'example_usuario'
+        #db_table = 'example_usuario'
 
 
-class ExampleUsuarioPossuiPerfil(models.Model):
-    perfil = models.ForeignKey(ExamplePerfil, models.DO_NOTHING)
-    usuario = models.ForeignKey(ExampleUsuario, models.DO_NOTHING)
+class UsuarioPossuiPerfil(models.Model):
+    perfil = models.ForeignKey(Perfil, models.DO_NOTHING)
+    usuario = models.ForeignKey(Usuario, models.DO_NOTHING)
 
     class Meta:
         managed = False
-        db_table = 'example_usuario_possui_perfil'
+        #db_table = 'example_usuario_possui_perfil'
         unique_together = (('usuario', 'perfil'),)
+        abstract = True
 
 
 class Gerencia(models.Model):
@@ -190,12 +191,12 @@ class LogTimestamp(models.Model):
     id_usuario = models.ForeignKey('Usuario', models.DO_NOTHING, db_column='id_usuario')
     id_servico = models.ForeignKey('Servico', models.DO_NOTHING, db_column='id_servico')
     id_exame = models.ForeignKey(Exame, models.DO_NOTHING, db_column='id_exame')
-    info = models.CharField(max_length=-1, blank=True, null=True)
+    info = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'log_timestamp'
-
+        abstract = True
 
 class Paciente(models.Model):
     id_paciente = models.IntegerField(primary_key=True)
@@ -245,6 +246,7 @@ class Possui(models.Model):
         managed = False
         db_table = 'possui'
         unique_together = (('id_usuario', 'id_perfil'),)
+        abstract = True
 
 
 class Realiza(models.Model):
@@ -282,6 +284,7 @@ class Tutelamento(models.Model):
         managed = False
         db_table = 'tutelamento'
         unique_together = (('id_tutelado', 'id_tutor', 'id_servico', 'id_perfil'),)
+        abstract = True
 
 
 class Usuario(models.Model):
@@ -296,3 +299,4 @@ class Usuario(models.Model):
     class Meta:
         managed = False
         db_table = 'usuario'
+        abstract = True
