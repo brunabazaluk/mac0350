@@ -7,6 +7,40 @@
 # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
+class Usuario(models.Model):
+    id_usuario = models.IntegerField(primary_key=True)
+    area_pesquisa = models.CharField(max_length=255, blank=True, null=True)
+    instituicao = models.CharField(max_length=255, blank=True, null=True)
+    login = models.CharField(max_length=255)
+    senha = models.CharField(max_length=255)
+    id_tutor = models.ForeignKey('self', models.DO_NOTHING, db_column='id_tutor', blank=True, null=True)
+    id_pessoa = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'usuario'
+        abstract = False
+
+class Perfil(models.Model):
+    id_perfil = models.IntegerField(primary_key=True)
+    tipo = models.CharField(max_length=255, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'perfil'
+        abstract = False
+
+class UsuarioPossuiPerfil(models.Model):
+    perfil = models.ForeignKey('Perfil', models.DO_NOTHING)
+    usuario = models.ForeignKey('Usuario', models.DO_NOTHING)
+
+    class Meta:
+        managed = False
+        db_table = 'example_usuario_possui_perfil'
+        unique_together = (('usuario', 'perfil'),)
+        abstract = False
+
+
 
 class Amostra(models.Model):
     id_paciente = models.ForeignKey('Paciente', models.DO_NOTHING, db_column='id_paciente')
@@ -149,7 +183,7 @@ class Perfil(models.Model):
         managed = False
         #db_table = 'example_perfil'
 
-
+'''
 class Usuario(models.Model):
     cpf = models.CharField(max_length=11)
     nome = models.CharField(max_length=255)
@@ -163,19 +197,7 @@ class Usuario(models.Model):
     class Meta:
         managed = False
         #db_table = 'example_usuario'
-
-
-class UsuarioPossuiPerfil(models.Model):
-    perfil = models.ForeignKey(Perfil, models.DO_NOTHING)
-    usuario = models.ForeignKey(Usuario, models.DO_NOTHING)
-
-    class Meta:
-        managed = False
-        #db_table = 'example_usuario_possui_perfil'
-        unique_together = (('usuario', 'perfil'),)
-        abstract = True
-
-
+'''
 class Gerencia(models.Model):
     id_servico = models.ForeignKey('Servico', models.DO_NOTHING, db_column='id_servico')
     id_exame = models.ForeignKey(Exame, models.DO_NOTHING, db_column='id_exame')
@@ -205,15 +227,6 @@ class Paciente(models.Model):
     class Meta:
         managed = False
         db_table = 'paciente'
-
-
-class Perfil(models.Model):
-    id_perfil = models.IntegerField(primary_key=True)
-    tipo = models.CharField(max_length=255, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'perfil'
 
 
 class Pertence(models.Model):
@@ -286,16 +299,3 @@ class Tutelamento(models.Model):
         unique_together = (('id_tutelado', 'id_tutor', 'id_servico', 'id_perfil'),)
 
 
-class Usuario(models.Model):
-    id_usuario = models.IntegerField(primary_key=True)
-    area_pesquisa = models.CharField(max_length=255, blank=True, null=True)
-    instituicao = models.CharField(max_length=255, blank=True, null=True)
-    login = models.CharField(max_length=255)
-    senha = models.CharField(max_length=255)
-    id_tutor = models.ForeignKey('self', models.DO_NOTHING, db_column='id_tutor', blank=True, null=True)
-    id_pessoa = models.IntegerField(blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'usuario'
-        abstract = True

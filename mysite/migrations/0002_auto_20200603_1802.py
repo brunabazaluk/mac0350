@@ -17,10 +17,10 @@ class Migration(migrations.Migration):
         ),
         migrations.AddConstraint(
             model_name='usuario',
-            constraint=models.UniqueConstraint(fields=('login',), name='unique_login'),
+            constraint=models.UniqueConstraint(fields=('login',), name='unique_login_'),
         ),
         migrations.AddConstraint(
             model_name='usuario_possui_perfil',
-            constraint=models.UniqueConstraint(fields=('usuario', 'perfil'), name='unique_usuario_perfil'),
+            constraint=models.UniqueConstraint(fields=('usuario', 'perfil'), name='unique_usuario_perfil_'),
         ),
     ]

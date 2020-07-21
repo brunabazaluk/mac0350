@@ -10,5 +10,5 @@ class UsuarioAdmin(admin.ModelAdmin):
 
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Perfil)
-admin.site.register(Usuario_Possui_Perfil)
+admin.site.register(UsuarioPossuiPerfil)
 '''
